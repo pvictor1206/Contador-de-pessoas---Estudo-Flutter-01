@@ -7,47 +7,63 @@ void main() {
       //widget
       title: "Contador de Pessoas",
       // Colunas verticais de informações
-      home: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        // Alinhamento do eixo principal (centro da tela)
-        children: <Widget>[
-          Text(
-            "Pessoas: 0",
-            style:
-                TextStyle(color: Colors.lightBlue, fontWeight: FontWeight.bold),
+      home: Stack(
+        children: [
+          Image.asset(
+            // Fica atras
+            "images/restaurant.jpg",
+            fit: BoxFit.cover,
+            height: 1000.0,
           ),
-          Row(
-            // Linha
-            mainAxisAlignment: MainAxisAlignment.center, // Centralizar
-            children: [
-              FlatButton(
-                child: Text(
-                  "+1",
-                  style: TextStyle(
-                    fontSize: 40.0,
-                    color: Colors.red,
-                  ),
-                ),
-                onPressed: () {}, // Funcao anonima
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            // Alinhamento do eixo principal (centro da tela)
+            children: <Widget>[
+              Text(
+                "Pessoas: 0",
+                style: TextStyle(
+                    color: Colors.lightBlue, fontWeight: FontWeight.bold),
               ),
-              FlatButton(
-                child: Text(
-                  "-1",
-                  style: TextStyle(
-                    fontSize: 40.0,
-                    color: Colors.red,
+              Row(
+                // Linha
+                mainAxisAlignment: MainAxisAlignment.center, // Centralizar
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: FlatButton(
+                      child: Text(
+                        "+1",
+                        style: TextStyle(
+                          fontSize: 40.0,
+                          color: Colors.red,
+                        ),
+                      ),
+                      onPressed: () {}, // Funcao anonima
+                    ),
                   ),
-                ),
-                onPressed: () {}, // Funcao anonima
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: FlatButton(
+                      child: Text(
+                        "-1",
+                        style: TextStyle(
+                          fontSize: 40.0,
+                          color: Colors.red,
+                        ),
+                      ),
+                      onPressed: () {}, // Funcao anonima
+                    ),
+                  ),
+                ],
               ),
+              Text(
+                "Pode Entrar!",
+                style: TextStyle(
+                    color: Colors.lightBlue,
+                    fontStyle: FontStyle.italic,
+                    fontSize: 30.0),
+              )
             ],
-          ),
-          Text(
-            "Pode Entrar!",
-            style: TextStyle(
-                color: Colors.lightBlue,
-                fontStyle: FontStyle.italic,
-                fontSize: 30.0),
           )
         ],
       )));
