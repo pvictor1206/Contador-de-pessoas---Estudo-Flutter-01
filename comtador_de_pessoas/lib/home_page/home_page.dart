@@ -1,48 +1,95 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
+class Home extends StatefulWidget {
+  // Nao é estático
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomeState createState() => _HomeState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _HomeState extends State<Home> {
+  int _people = 0;
+  String _infoText = "Pode Entrar!";
 
-  void _incrementCounter() {
+  void _changePeople(int delta) {
     setState(() {
-      _counter++;
+      //Atualiza a tela
+      _people += delta;
+
+      if (_people < 0) {
+        _infoText = " Mundo Inverido!";
+      } else if (_people <= 10) {
+        _infoText = "Pode Entrar!";
+      } else {
+        _infoText = "Lotado";
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
+    return Stack(
+      children: [
+        Image.asset(
+          // Fica atras
+          "images/restaurant.jpg",
+          fit: BoxFit.cover,
+          height: 1000.0,
+        ),
+        Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          // Alinhamento do eixo principal (centro da tela)
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              "Pessoas: $_people",
+              style: TextStyle(
+                  color: Colors.lightBlue, fontWeight: FontWeight.bold),
+            ),
+            Row(
+              // Linha
+              mainAxisAlignment: MainAxisAlignment.center, // Centralizar
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: FlatButton(
+                    child: Text(
+                      "+1",
+                      style: TextStyle(
+                        fontSize: 40.0,
+                        color: Colors.red,
+                      ),
+                    ),
+                    onPressed: () {
+                      _changePeople(1);
+                    }, // Funcao anonima
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: FlatButton(
+                    child: Text(
+                      "-1",
+                      style: TextStyle(
+                        fontSize: 40.0,
+                        color: Colors.red,
+                      ),
+                    ),
+                    onPressed: () {
+                      _changePeople(-1);
+                    }, // Funcao anonima
+                  ),
+                ),
+              ],
             ),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+              _infoText,
+              style: TextStyle(
+                  color: Colors.lightBlue,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 30.0),
+            )
           ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        )
+      ],
     );
   }
 }
