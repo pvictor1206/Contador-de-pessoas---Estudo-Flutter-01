@@ -8,18 +8,46 @@ void main() {
       title: "Contador de Pessoas",
       // Colunas verticais de informações
       home: Column(
-        mainAxisAlignment: MainAxisAlignment.center, // Alinhamento do eixo principal (centro da tela)
+        mainAxisAlignment: MainAxisAlignment.center,
+        // Alinhamento do eixo principal (centro da tela)
         children: <Widget>[
           Text(
             "Pessoas: 0",
             style:
                 TextStyle(color: Colors.lightBlue, fontWeight: FontWeight.bold),
           ),
+          Row(
+            // Linha
+            mainAxisAlignment: MainAxisAlignment.center, // Centralizar
+            children: [
+              FlatButton(
+                child: Text(
+                  "+1",
+                  style: TextStyle(
+                    fontSize: 40.0,
+                    color: Colors.red,
+                  ),
+                ),
+                onPressed: () {}, // Funcao anonima
+              ),
+              FlatButton(
+                child: Text(
+                  "-1",
+                  style: TextStyle(
+                    fontSize: 40.0,
+                    color: Colors.red,
+                  ),
+                ),
+                onPressed: () {}, // Funcao anonima
+              ),
+            ],
+          ),
           Text(
             "Pode Entrar!",
-            style:
-            TextStyle(color: Colors.lightBlue, fontStyle: FontStyle.italic,
-            fontSize: 30.0),
+            style: TextStyle(
+                color: Colors.lightBlue,
+                fontStyle: FontStyle.italic,
+                fontSize: 30.0),
           )
         ],
       )));
